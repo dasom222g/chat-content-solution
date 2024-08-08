@@ -50,19 +50,25 @@ const Chat = ({ userInfo, partnerInfo }) => {
 
   const sendInfo = useCallback(async () => {
     setIsInfoLoading(true);
-    console.log("endpoint", endpoint);
-    console.log("userInfo", userInfo);
-    console.log("partnerInfo", partnerInfo);
     try {
       const response = await fetch(`${endpoint}/info`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userInfo, partnerInfo }),
+        body: JSON.stringify({
+          contentInfo: userInfo,
+          buisnessInfo: partnerInfo,
+        }),
       });
 
       const result = await response.json();
-      console.log("result", result);
-      setInfoMessage(result.data);
+      const removeLastDataList = result.data.filter(
+        (item, index, arr) => index !== arr.length - 1
+      );
+      console.log("초기 프롬프트:", result.data[0]?.content);
+      setInfoMessage(removeLastDataList);
+      const { role, content } = result.data[result.data.length - 1];
+
+      setMessages((prev) => [...prev, { role, content }]);
     } catch (error) {
       console.error(error);
     }

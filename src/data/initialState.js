@@ -19,6 +19,11 @@ export const initialPartnerInfo = {
     type: "pre",
     text: "예비창업",
   },
+  gender: {
+    id: 1,
+    type: "male",
+    text: "남자",
+  },
   promotionMethod: "",
   targetCustomer: "",
   mainRevenue: "",
