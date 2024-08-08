@@ -61,6 +61,9 @@ const Chat = ({ userInfo, partnerInfo }) => {
       });
 
       const result = await response.json();
+
+      // 데이터가 잘 들어온 경우만 실행
+      if (!result.data) return;
       const removeLastDataList = result.data.filter(
         (item, index, arr) => index !== arr.length - 1
       );
