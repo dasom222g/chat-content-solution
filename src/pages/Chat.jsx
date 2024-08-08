@@ -99,7 +99,7 @@ const Chat = ({ userInfo, partnerInfo }) => {
         {/* START:헤더 영역 */}
         <div className="-mx-6 -mt-10 py-7 bg-date-blue-600">
           <span className="block text-xl text-center text-white">
-            {partnerInfo.startupStage.text}
+            {partnerInfo?.startupStage?.text}
           </span>
         </div>
         {/* END:헤더 영역 */}
